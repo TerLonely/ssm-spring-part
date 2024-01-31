@@ -9,15 +9,24 @@
             class：组件类的全限定符
 
        -->
-    <bean id="happyComponent" class="com.zhangchendong.HappyComponent" />
-
+    <bean id="happyComponent" class="com.zhangchendong.ioc_01.HappyComponent" />
 
     <!-- 2.静态工厂声明工厂方法
         <bean id= 组件标识
               class = 工厂类全限定符
               factory-method = 静态工厂方法
      -->
-    <bean id="clientService" class="com.zhangchendong.ClientService" factory-method="createClient"/>
+    <bean id="clientService" class="com.zhangchendong.ioc_01.ClientService" factory-method="createClient"/>
+
+    <!-- 3.非静态类工厂 声明Ioc的配置
+            3.1 配置工厂类的组件信息
+      -->
+    <bean id="defaultServiceLocator" class="com.zhangchendong.ioc_01.DefaultServiceLocator" />
+    <!--  3.2 通过指定非静态工厂对象和方法名，来配置生成的ioc信息  -->
+    <bean id="factoryService"
+          factory-bean="defaultServiceLocator"
+          factory-method="createFactory"
+    />
 
 
 

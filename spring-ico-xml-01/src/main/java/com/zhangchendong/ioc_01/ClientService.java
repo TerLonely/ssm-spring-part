@@ -1,6 +1,4 @@
-package com.zhangchendong;
-
-import java.sql.ClientInfoStatus;
+package com.zhangchendong.ioc_01;
 
 /**
  * @author zhangchendong

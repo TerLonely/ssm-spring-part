@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--  springioc容器内部会有缓存动作：1.先创建对象【ioc】 2.在进行属性赋值【di】  -->
+    <bean id="userService" class="com.zhangchendong.ioc_02.UserService">
+            <!-- 构造参数传值 di配置
+                <constructor-arg 构造参数传值的 di配置
+                    value = 直接属性值
+                    ref   = 引用其他bean beanId值
+                 />
+             -->
+            <constructor-arg ref="userDao"/>
+    </bean>
+
+    <!-- 将UserDao和UserService 放入ico容器中 -->
+    <bean id="userDao" class="com.zhangchendong.ioc_02.UserDao"/>
+
+
+    <bean id="userService1" class="com.zhangchendong.ioc_02.UserService">
+        <!-- 方式 1 按顺序填写属性参数 -->
+        <!--<constructor-arg value="18"/>-->
+        <!--<constructor-arg value="姓名"/>-->
+        <!--<constructor-arg ref="userDao"/>-->
+
+        <!-- 方式 2 通过name 指定传参属性 -->
+        <!--<constructor-arg name="age" value="18"/>-->
+        <!--<constructor-arg name="name" value="姓名"/>-->
+        <!--<constructor-arg name="userDao" ref="userDao"/>-->
+
+        <!-- 方式 3 根据参数索引值填写 索引由 0 开始 -->
+        <constructor-arg index="0" value="18"/>
+        <constructor-arg index="1" value="姓名"/>
+        <constructor-arg index="2" ref="userDao"/>
+    </bean>
+
+
+    <!-- setter方法进行注入 -->
+    <bean id="movieFinder" class="com.zhangchendong.ioc_02.MovieFinder"/>
+    <bean id="simpleMovieLister" class="com.zhangchendong.ioc_02.SimpleMovieLister">
+
+        <!--
+            name -> 属性名 setter方法 去除set和首字母小写的值
+                setMovieFinder -> movieFinder
+            value|ref 二选一  value = "直接属性值" ref= "其他bean的id"
+         -->
+        <property name="movieName" value="名称"/>
+        <property name="movieFinder" ref="movieFinder"/>
+
+    </bean>
+
+
+
+</beans>

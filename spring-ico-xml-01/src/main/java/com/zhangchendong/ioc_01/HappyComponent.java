@@ -3,7 +3,7 @@
  * Copyright(c) All Rights Reserved
  */
 
-package com.zhangchendong;
+package com.zhangchendong.ioc_01;
 
 /**
  * @author zhangchendong
