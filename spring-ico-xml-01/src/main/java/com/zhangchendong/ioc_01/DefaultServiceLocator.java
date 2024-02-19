@@ -6,6 +6,7 @@ package com.zhangchendong.ioc_01;
  */
 public class DefaultServiceLocator {
 
+
     private static FactoryService factoryService = new FactoryService();
 
     public FactoryService createFactory(){
